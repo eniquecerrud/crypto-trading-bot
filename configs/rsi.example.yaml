@@ -1,0 +1,48 @@
+# Misma muestra offline, con reversión por RSI.
+# Úsalo así: cryptobot backtest --config configs/rsi.example.yaml
+
+exchange: binance
+symbol: BTC/USDT
+timeframe: 1h
+
+data:
+  source: csv
+  csv_path: data/sample/BTC-USDT-1h.csv
+
+strategy:
+  name: rsi_mean_reversion
+  params:
+    window: 14
+    oversold: 30
+    overbought: 70
+    exit_long: 50
+    exit_short: 50
+
+backtest:
+  initial_cash: 10000
+  fee_rate: 0.001
+  slippage_bps: 5
+  position_size_pct: 0.5
+  stop_loss_pct: 0.04
+  take_profit_pct: 0.06
+  allow_short: false
+
+risk:
+  max_position_pct: 0.5
+  max_daily_loss_pct: 0.05
+
+paper:
+  poll_seconds: 60
+  lookback: 300
+
+live:
+  enabled: false
+  sandbox: true
+
+logging:
+  level: INFO
+  json: false
+
+output:
+  equity_curve: artifacts/rsi-equity.png
+  trades_csv: artifacts/rsi-trades.csv

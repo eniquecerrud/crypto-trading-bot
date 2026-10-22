@@ -1,0 +1,49 @@
+# Ejemplo listo para ejecutarse sin red ni claves.
+# Lanza los comandos desde la raíz del repositorio.
+
+exchange: binance
+symbol: BTC/USDT
+timeframe: 1h
+
+data:
+  source: csv
+  csv_path: data/sample/BTC-USDT-1h.csv
+  cache_dir: data/cache
+  cache_backend: csv
+  sqlite_path: data/cache/ohlcv.sqlite
+
+strategy:
+  name: sma_crossover
+  params:
+    fast_window: 10
+    slow_window: 30
+
+backtest:
+  initial_cash: 10000
+  fee_rate: 0.001
+  slippage_bps: 5
+  position_size_pct: 0.95
+  stop_loss_pct: 0.03
+  take_profit_pct: 0.08
+  allow_short: false
+  close_at_end: false
+
+risk:
+  max_position_pct: 0.95
+  max_daily_loss_pct: 0.10
+
+paper:
+  poll_seconds: 60
+  lookback: 300
+
+live:
+  enabled: false
+  sandbox: true
+
+logging:
+  level: INFO
+  json: false
+
+output:
+  equity_curve: artifacts/equity.png
+  trades_csv: artifacts/trades.csv
