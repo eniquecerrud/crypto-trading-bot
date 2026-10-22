@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Secrets and local state
+.env
+.env.*
+!.env.example
+
+# Generated runtime output and downloaded market data
+artifacts/
+data/cache/
+
+# Editors
+.idea/
+.vscode/
+*.swp
